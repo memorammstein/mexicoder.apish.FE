@@ -10,12 +10,12 @@
  */
 angular
   .module('mexicoderapishfeApp', [
-    'ngAnimate',
     'ngCookies',
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'cgBusy'
   ])
   .constant(
     'BackEndBasePath', 'https://mexicoder-apish-backend.herokuapp.com/api/'
@@ -27,7 +27,8 @@ angular
       .when('/', {
         templateUrl: 'views/main.html',
         controller: 'MainCtrl',
-        controllerAs: 'main'
+        controllerAs: 'main',
+        reloadOnSearch: false
       })
       .when('/about', {
         templateUrl: 'views/about.html',

@@ -7,16 +7,36 @@
     </div>
     <div class="row">
       <div class="col-xs-12 col-md-6 col-md-offset-2">
-        <input class="form-control" type="text" name="search" placeholder="What are you looking for?" autofocus="true">
+        <form class="form-inline">
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" name="twitter_option" ng-model="search.params.twitter">
+              Twitter
+            </label>
+          </div>
+          <div class="checkbox">
+            <label>
+              <input type="checkbox" name="wikipedia_option" ng-model="search.params.wikipedia">
+              Wikipedia
+            </label>
+          </div>
+        </div>
+        </form>
+    </div>
+    <div style="height:1em;"></div>
+    <div class="row">
+      <div class="col-xs-12 col-md-6 col-md-offset-2">
+        <input class="form-control" type="text" name="search" placeholder="What are you looking for?" autofocus="true" ng-model="search.query" ng-enter="execute_search(search)">
       </div>
       <div class="col-xs-12 col-md-2">
-        <button class="btn btn-default btn-block" type="button" name="button"><i class="fa fa-search"></i></button>
+        <button class="btn btn-default btn-block" type="button" name="button" ng-click="execute_search(search)"><i class="fa fa-search"></i></button>
       </div>
     </div>
   </div>
 </div>
 <div style="height:5em;"></div>
-<div class="row">
+
+<div class="row" cg-busy="{promise:twitterPromise,message:'Loading Your Data'}">
   <div class="col-xs-12 col-md-8 col-md-offset-2">
     <ul class="list-unstyled">
       <li ng-repeat="tweet in tweets">
@@ -30,6 +50,26 @@
             <p>
               {{tweet.text}}
             </p>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+
+<div class="row" cg-busy="{promise:wikipediaPromise,message:'Loading Your Data'}">
+  <div class="col-xs-12 col-md-8 col-md-offset-2">
+    <ul class="list-unstyled">
+      <li ng-repeat="wiki in wikis">
+        <div class="row well well-sm">
+          <div class="col-xs-2">
+            <img src="https://upload.wikimedia.org/wikipedia/meta/b/be/Wikipedia-logo-v2_2x.png" alt="wikipedia wiki image" class="img-responsive" style="height: 3.5em"/>
+          </div>
+          <div class="col-xs-10">
+            <strong><a href="https://en.wikipedia.org/wiki/{{wiki.title}}" target="_blank">{{wiki.title || 'Title'}}</a></strong> <small class="pull-right">{{wiki.timestamp | date: 'medium'}}</small>
+            <br />
+            <span ng-bind-html="wiki.snippet">
+            </span><a href="https://en.wikipedia.org/wiki/{{wiki.title}}" target="_blank">...</a>
           </div>
         </div>
       </li>

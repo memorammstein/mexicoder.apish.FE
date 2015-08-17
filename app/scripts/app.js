@@ -17,6 +17,9 @@ angular
     'ngSanitize',
     'ngTouch'
   ])
+  .constant(
+    'BackEndBasePath', 'https://mexicoder-apish-backend.herokuapp.com/api/'
+  )
   .config(function ($routeProvider) {
     $routeProvider
       .when('/', {

@@ -15,3 +15,24 @@
     </div>
   </div>
 </div>
+<div style="height:5em;"></div>
+<div class="row">
+  <div class="col-xs-12 col-md-8 col-md-offset-2">
+    <ul class="list-unstyled">
+      <li ng-repeat="tweet in tweets">
+        <div class="row well well-sm">
+          <div class="col-xs-2">
+            <img src="https://g.twimg.com/about/feature-corporate/image/twitterbird_RGB.png" alt="twitter tweet image" class="img-responsive" style="height: 3.5em"/>
+          </div>
+          <div class="col-xs-10">
+            <strong>{{tweet.user.name || 'Guillermo Jiménez'}}</strong> <small><a href="https://twitter.com/{{tweet.user.screen_name || 'm3m0_'}}" target="_blank">@{{tweet.user.screen_name || 'm3m0_'}}</a></small> <small class="pull-right">{{tweet.created_at}}. {{tweet.user.location}}</small>
+            <br />
+            <p>
+              {{tweet.text}}
+            </p>
+          </div>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
